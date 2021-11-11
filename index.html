@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate Dynamic link</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="app-container">
+      <div>
+        <h1>Genrate short dynamic link through REST</h1>
+        <section class="container">
+          <div class="deeplink">
+            <h2>Setup your dynamic link</h2>
+            <h3>
+              A Dynamic Link is a deep link into your app that works whether or
+              not your app is installed. On desktop it will go to the deep link
+              url.
+              <a
+                href="https://firebase.google.com/products/dynamic-links?authuser=0"
+                rel="noopener"
+                target="_blank"
+                >Learn More</a
+              >
+            </h3>
+            <label>
+              Deep Link URL:
+              <input type="text" id="deepLink" />
+            </label>
+          </div>
+
+          <label>
+            Package Name:
+            <select name="" id="packageName">
+              <option value="com.saloncentric.app">Prod App</option>
+            </select>
+          </label>
+          <label>
+            IBI Name:
+            <select name="" id="ibi">
+              <option value="com.saloncentric.app">Prod App</option>
+              <option value="com.ymedialabs.enterprise.saloncentric">
+                Non prod App
+              </option>
+            </select>
+          </label>
+          <label>
+            Your afl:
+            <input type="text" id="afl" />
+          </label>
+          <label>
+            Your ofl:
+            <input type="text" id="ofl" />
+          </label>
+          <label>
+            Your ifl:
+            <input type="text" id="ifl" />
+          </label>
+          <label>
+            Campaign source:
+            <input type="text" id="utm_source" />
+          </label>
+          <label>
+            Campaign medium:
+            <input type="text" id="utm_medium" />
+          </label>
+          <label>
+            Campaign name:
+            <input type="text" id="utm_campaign" />
+          </label>
+          <button id="generateLink">Generate Link</button>
+        </section>
+      </div>
+    </section>
+    <section id="shortLink"></section>
+    <script src="script.js"></script>
+  </body>
+</html>
