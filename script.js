@@ -12,7 +12,8 @@
     utm_campaign = $('#utm_campaign'),
     shortLink = $('#shortLink'),
     ibi = $('#ibi'),
-    ifl = $('#ifl');
+    ifl = $('#ifl'),
+    isi = $('#isi');
 
     function returnUrlParamsBasedOnValue(param, value) {
         if(value) {
@@ -32,7 +33,7 @@
         }
 
         //manually generate dynamic long url
-        var url = `https://saloncentric.page.link/?link=${deepLink.value}${returnUrlParamsBasedOnValue('apn', packageName.value)}${returnUrlParamsBasedOnValue('afl', afl.value)}${returnUrlParamsBasedOnValue('ofl', ofl.value)}${returnUrlParamsBasedOnValue('utm_source', utm_source.value)}${returnUrlParamsBasedOnValue('utm_medium', utm_medium.value)}${returnUrlParamsBasedOnValue('utm_campaign', utm_campaign.value)}${returnUrlParamsBasedOnValue('ibi', ibi.value)}${returnUrlParamsBasedOnValue('ifl', ifl.value)}`;
+        var url = `https://saloncentric.page.link/?link=${deepLink.value}${returnUrlParamsBasedOnValue('apn', packageName.value)}${returnUrlParamsBasedOnValue('afl', afl.value)}${returnUrlParamsBasedOnValue('ofl', ofl.value)}${returnUrlParamsBasedOnValue('utm_source', utm_source.value)}${returnUrlParamsBasedOnValue('utm_medium', utm_medium.value)}${returnUrlParamsBasedOnValue('utm_campaign', utm_campaign.value)}${returnUrlParamsBasedOnValue('ibi', ibi.value)}${returnUrlParamsBasedOnValue('ifl', ifl.value)}${returnUrlParamsBasedOnValue('isi', isi.value)}`;
 
         //actuall api call to generate short link with long dynamic link
         var postData = await fetch(`https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${API_KEY}`, {
