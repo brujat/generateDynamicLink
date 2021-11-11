@@ -1,6 +1,6 @@
 (function GenerateDynamicLink () {
     //API_KEY should be changed project settings -> web api key
-    const API_KEY = 'AIzaSyAN-hLk_7tploOR4AjtyEUCPEIpr9oZGI8'
+    const API_KEY = 'AIzaSyDKrNHQcr75Y2n9Y39GXpV_JSat-mhHRIo'
     var $ = document.querySelector.bind(document),
     button = $('#generateLink'),
     deepLink = $('#deepLink'),
