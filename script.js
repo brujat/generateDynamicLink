@@ -28,8 +28,8 @@
         shortLink.innerText = '';
 
         //alert if no values 
-        if(!deepLink) {
-            alert("Sub domain and deeplink is mandatory");
+        if(!deepLink.value) {
+            shortLink.innerText = "Deep Link URL is mandatory";
         }
 
         //manually generate dynamic long url

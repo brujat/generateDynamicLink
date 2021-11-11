@@ -11,7 +11,8 @@
 }
 
 .container label {
-    margin: 10px 0;
+    display: flex;
+    margin: 8px 0;
 }
 
 .container #generateLink {
@@ -42,4 +43,17 @@
 
 .container h2, .container h3 {
     margin: 10px 0;
+}
+
+.container h3 {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.container h4 {
+    margin-right: 10px;
+}
+
+.blocks {
+    margin: 20px 0;
 }

@@ -26,54 +26,148 @@
               >
             </h3>
             <label>
-              Deep Link URL:
+              <h4>URL:</h4>
               <input type="text" id="deepLink" />
             </label>
           </div>
-
-          <label>
-            Package Name:
-            <select name="" id="packageName">
-              <option value="com.saloncentric.app">Prod App</option>
-            </select>
-          </label>
-          <label>
-            IBI Name:
-            <select name="" id="ibi">
-              <option value="com.saloncentric.app">Prod App</option>
-              <option value="com.ymedialabs.enterprise.saloncentric">
-                Non prod App
-              </option>
-            </select>
-          </label>
-          <label>
-            Your afl:
-            <input type="text" id="afl" />
-          </label>
-          <label>
-            Your ofl:
-            <input type="text" id="ofl" />
-          </label>
-          <label>
-            Your ifl:
-            <input type="text" id="ifl" />
-          </label>
-          <label>
-            Your isi:
-            <input type="text" id="isi" />
-          </label>
-          <label>
-            Campaign source:
-            <input type="text" id="utm_source" />
-          </label>
-          <label>
-            Campaign medium:
-            <input type="text" id="utm_medium" />
-          </label>
-          <label>
-            Campaign name:
-            <input type="text" id="utm_campaign" />
-          </label>
+          <div class="ios">
+            <h2>Define link behavior for Apple</h2>
+            <div class="blocks">
+              <h3>
+                The bundle ID of the iOS app to use to open the link. The app
+                must be connected to your project from the Overview page of the
+                Firebase console. Required for the Dynamic Link to open an iOS
+                app.
+              </h3>
+              <label>
+                <h4>IBI Name:</h4>
+                <select name="" id="ibi">
+                  <option value="com.saloncentric.app">Prod App</option>
+                  <option value="com.ymedialabs.enterprise.saloncentric">
+                    Non prod App
+                  </option>
+                </select>
+              </label>
+            </div>
+            <div class="blocks">
+              <h3>
+                The link to open when the app isn't installed. Specify this to
+                do something other than install your app from the App Store when
+                the app isn't installed, such as open the mobile web version of
+                the content, or display a promotional page for your app.
+              </h3>
+              <label>
+                <h4>IFL:</h4>
+                <input type="text" id="ifl" />
+              </label>
+            </div>
+            <div class="blocks">
+              <h3>
+                Your app's App Store ID, used to send users to the App Store
+                when the app isn't installed
+              </h3>
+              <label>
+                <h4>ISI:</h4>
+                <input type="text" id="isi" />
+              </label>
+            </div>
+          </div>
+          <div class="andriod">
+            <h2>Define link behavior for Android</h2>
+            <div class="blocks">
+              <h3>
+                The package name of the Android app to use to open the link. The
+                app must be connected to your project from the Overview page of
+                the Firebase console. Required for the Dynamic Link to open an
+                Android app.
+              </h3>
+              <label>
+                <h4>Package Name:</h4>
+                <select name="" id="packageName">
+                  <option value="com.saloncentric.app">Prod App</option>
+                </select>
+              </label>
+            </div>
+            <div class="blocks">
+              <h3>
+                The link to open when the app isn't installed. Specify this to
+                do something other than install your app from the Play Store
+                when the app isn't installed, such as open the mobile web
+                version of the content, or display a promotional page for your
+                app.
+              </h3>
+              <label>
+                <h4>AFL:</h4>
+                <input type="text" id="afl" />
+              </label>
+            </div>
+          </div>
+          <div class="otherplatforms">
+            <h2>Other Platforms (Desktops)</h2>
+            <div class="blocks">
+              <h3>
+                The link to open on platforms beside Android and iOS. This is
+                useful to specify a different behavior on desktop, like
+                displaying a full web page of the app content/payload (as
+                specified by param link) with another dynamic link to install
+                the app.
+              </h3>
+              <label>
+                <h4>OFL:</h4>
+                <input type="text" id="ofl" />
+              </label>
+            </div>
+          </div>
+          <div class="utmcontainer">
+            <h2>Track a campaign with UTM parameters</h2>
+            <div class="blocks">
+              <h3>
+                The campaign source is the advertiser, site, or publication
+                sending traffic to your property, per the 'utm_source' parameter
+                in the
+                <a
+                  href="https://firebase.google.com/docs/dynamic-links/create-manually?authuser=0#analytics-params"
+                  rel="noopener"
+                  target="_blank"
+                  >documentation</a
+                >.
+              </h3>
+              <label>
+                <h4>
+                  Campaign source:
+                </h4>
+                <input type="text" id="utm_source" />
+              </label>
+            </div>
+            <div class="blocks">
+              <h3>The advertising or marketing medium, such as a cpc, banner ad, or email newsletter, which is set using the 'utm_medium' parameter in the <a
+                href="https://firebase.google.com/docs/dynamic-links/create-manually?authuser=0#analytics-params"
+                rel="noopener"
+                target="_blank"
+                >documentation</a
+              >.</h3>
+              <label>
+                <h4>
+                  Campaign medium:
+                </h4>
+                <input type="text" id="utm_medium" />
+              </label>
+            </div>
+            <div class="blocks">
+              <h3>The campaign name may be a slogan, promo code, or other identifier, which is set using the 'utm_campaign' parameter in the <a
+                href="https://firebase.google.com/docs/dynamic-links/create-manually?authuser=0#analytics-params"
+                rel="noopener"
+                target="_blank"
+                >documentation</a
+              >.</h3>
+              <label>
+                <h4>
+                  Campaign name:
+                </h4>
+                <input type="text" id="utm_campaign" />
+              </label>
+            </div>
+          </div>
           <button id="generateLink">Generate Link</button>
         </section>
       </div>
