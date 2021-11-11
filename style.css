@@ -25,6 +25,12 @@
     cursor: pointer;
 }
 
+.response {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
 .container #shortLink {
     padding: 20px;
     color: blue;
