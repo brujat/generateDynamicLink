@@ -31,9 +31,10 @@
     justify-content: center;
 }
 
-.container #shortLink {
+.response #shortLink {
     padding: 20px;
     color: blue;
+    margin: 40px 0;
 }
 
 .app-container {

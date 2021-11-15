@@ -69,7 +69,7 @@
 
         var data = await postData.json();
         if(data.shortLink && data.previewLink) {
-            shortLink.innerText = `Short Link: ${data.shortLink} and Preview Link: ${data.previewLink}`
-        }
+            shortLink.innerText = `Short Link: ${data.shortLink} and Preview Link: ${data.previewLink}`;
+        } 
     })
 })();
