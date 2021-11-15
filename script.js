@@ -37,11 +37,13 @@
 
     button.addEventListener('click', async function buttonClick() {
         //empty previous link if clicked again
-        shortLink.innerText = '';
+        shortLink.classList.remove('red');
+        shortLink.innerText = 'Loading . . .';
 
         //alert if no values 
         if(!deepLink.value) {
             shortLink.innerText = "Deep Link URL is mandatory";
+            shortLink.classList.add('red');
         }
 
         //manually generate dynamic long url
@@ -69,6 +71,7 @@
 
         var data = await postData.json();
         if(data.shortLink && data.previewLink) {
+            shortLink.classList.remove('red');
             shortLink.innerText = `Short Link: ${data.shortLink} and Preview Link: ${data.previewLink}`;
         } 
     })
