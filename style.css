@@ -85,3 +85,20 @@
     align-items: center;
     padding: 22px 0px;
 }
+
+.container h2 {
+    cursor: pointer;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+}
+
+input[type='radio'] {
+    margin-right: 6px;
+}
+
+.customurl {
+    margin-left: 40px;
+}

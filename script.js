@@ -13,7 +13,8 @@
     shortLink = $('#shortLink'),
     ibi = $('#ibi'),
     ifl = $('#ifl'),
-    isi = $('#isi');
+    isi = $('#isi'),
+    radioValue;
 
     function returnUrlParamsBasedOnValue(param, value) {
         if(value) {
@@ -23,12 +24,16 @@
     }
 
     $('.container').addEventListener('click', function accordianHeaderClick(event) {
-        debugger;
         if(event.target.classList.value === 'accordian-header') {
             event.target.parentElement.querySelector('.accordian-content').classList.toggle('animate');
         }
     });
-   
+
+    $('#radios').addEventListener('click', function radioClick(event) {
+        if(event.target && (event.target.matches('.radio-label') || event.target.matches(`input[type='radio']`))) {
+            radioValue = event.currentTarget.querySelector(`input[type='radio']`).value;
+        }
+    });
 
     button.addEventListener('click', async function buttonClick() {
         //empty previous link if clicked again
@@ -40,7 +45,13 @@
         }
 
         //manually generate dynamic long url
-        var url = `https://saloncentric.page.link/?link=${deepLink.value}${returnUrlParamsBasedOnValue('apn', packageName.value)}${returnUrlParamsBasedOnValue('afl', afl.value)}${returnUrlParamsBasedOnValue('ofl', ofl.value)}${returnUrlParamsBasedOnValue('utm_source', utm_source.value)}${returnUrlParamsBasedOnValue('utm_medium', utm_medium.value)}${returnUrlParamsBasedOnValue('utm_campaign', utm_campaign.value)}${returnUrlParamsBasedOnValue('ibi', ibi.value)}${returnUrlParamsBasedOnValue('ifl', ifl.value)}${returnUrlParamsBasedOnValue('isi', isi.value)}`;
+        var url = `https://saloncentric.page.link/?link=${deepLink.value}${returnUrlParamsBasedOnValue('apn', packageName.value)}${returnUrlParamsBasedOnValue('afl', afl.value)}${returnUrlParamsBasedOnValue('ofl', ofl.value)}${returnUrlParamsBasedOnValue('utm_source', utm_source.value)}${returnUrlParamsBasedOnValue('utm_medium', utm_medium.value)}${returnUrlParamsBasedOnValue('utm_campaign', utm_campaign.value)}${returnUrlParamsBasedOnValue('ibi', ibi.value)}`;
+
+        if(radioValue === 'customurl') {
+            url = `${url}${returnUrlParamsBasedOnValue('ifl', ifl.value)}`
+        } else {
+            url = `${url}${returnUrlParamsBasedOnValue('isi', ibi.value)}`
+        }
 
         //actuall api call to generate short link with long dynamic link
         var postData = await fetch(`https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${API_KEY}`, {

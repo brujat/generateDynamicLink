@@ -55,6 +55,19 @@
                 </label>
               </div>
               <div class="blocks">
+                <h4>Select Link behavior</h4>
+                <div id="radios">
+                  <label class="radio-label">
+                    <input type="radio" name="linkBehaviour" value="appstore"/>
+                    App store page for your app
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="linkBehaviour" value="customurl"/> 
+                    Custom URL
+                  </label>
+                </div>
+              </div>
+              <div class="blocks customurl">
                 <h3>
                   The link to open when the app isn't installed. Specify this to
                   do something other than install your app from the App Store
@@ -65,16 +78,6 @@
                 <label>
                   <h4>IFL:</h4>
                   <input type="text" id="ifl" />
-                </label>
-              </div>
-              <div class="blocks">
-                <h3>
-                  Your app's App Store ID, used to send users to the App Store
-                  when the app isn't installed
-                </h3>
-                <label>
-                  <h4>ISI:</h4>
-                  <input type="text" id="isi" />
                 </label>
               </div>
             </div>
