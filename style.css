@@ -63,3 +63,25 @@
 .blocks {
     margin: 20px 0;
 }
+
+.accordian-content {
+    height: 0px;
+    transition: height 0.3ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    display: none;
+}
+
+.animate {
+    height: auto;
+    display: initial;
+}
+
+.deeplink , .ios, .andriod, .otherplatforms, .utmcontainer {
+    padding: 20px 0px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 22px 0px;
+}

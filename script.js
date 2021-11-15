@@ -21,6 +21,13 @@
         }
         return ``;
     }
+
+    $('.container').addEventListener('click', function accordianHeaderClick(event) {
+        debugger;
+        if(event.target.classList.value === 'accordian-header') {
+            event.target.parentElement.querySelector('.accordian-content').classList.toggle('animate');
+        }
+    });
    
 
     button.addEventListener('click', async function buttonClick() {
