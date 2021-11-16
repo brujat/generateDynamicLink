@@ -13,6 +13,7 @@
 .container label {
     display: flex;
     margin: 8px 0;
+    align-items: center;
 }
 
 .container #generateLink {
@@ -23,6 +24,8 @@
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .response {
@@ -89,6 +92,8 @@
 
 .container h2 {
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 .radio-label {
@@ -106,4 +111,20 @@ input[type='radio'] {
 
 #shortLink.red {
     color: red;
+}
+
+.arrow-down {
+    height: 32px;
+    width: 32px;
+    margin-left: 20px;
+    transition: transform 0.3ms;
+}
+
+.arrow-down.rotate {
+    transform: rotate(180deg);
+}
+
+input[type='text'] {
+    width: 400px;
+    height: 26px;
 }

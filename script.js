@@ -14,7 +14,8 @@
     ibi = $('#ibi'),
     ifl = $('#ifl'),
     isi = $('#isi'),
-    radioValue;
+    radioValue,
+    andriodValue;
 
     function returnUrlParamsBasedOnValue(param, value) {
         if(value) {
@@ -24,14 +25,22 @@
     }
 
     $('.container').addEventListener('click', function accordianHeaderClick(event) {
+        debugger;
         if(event.target.classList.value === 'accordian-header') {
             event.target.parentElement.querySelector('.accordian-content').classList.toggle('animate');
+            event.target.querySelector('svg').classList.toggle('rotate');
         }
     });
 
     $('#radios').addEventListener('click', function radioClick(event) {
         if(event.target && (event.target.matches('.radio-label') || event.target.matches(`input[type='radio']`))) {
             radioValue = event.currentTarget.querySelector(`input[type='radio']`).value;
+        }
+    });
+
+    $('#andriod-radios').addEventListener('click', function radioClick(event) {
+        if(event.target && (event.target.matches('.radio-label') || event.target.matches(`input[type='radio']`))) {
+            andriodValue = event.currentTarget.querySelector(`input[type='radio']`).value;
         }
     });
 
@@ -47,12 +56,16 @@
         }
 
         //manually generate dynamic long url
-        var url = `https://saloncentric.page.link/?link=${deepLink.value}${returnUrlParamsBasedOnValue('apn', packageName.value)}${returnUrlParamsBasedOnValue('afl', afl.value)}${returnUrlParamsBasedOnValue('ofl', ofl.value)}${returnUrlParamsBasedOnValue('utm_source', utm_source.value)}${returnUrlParamsBasedOnValue('utm_medium', utm_medium.value)}${returnUrlParamsBasedOnValue('utm_campaign', utm_campaign.value)}${returnUrlParamsBasedOnValue('ibi', ibi.value)}`;
+        var url = `https://saloncentric.page.link/?link=${deepLink.value}${returnUrlParamsBasedOnValue('apn', packageName.value)}${returnUrlParamsBasedOnValue('ofl', ofl.value)}${returnUrlParamsBasedOnValue('utm_source', utm_source.value)}${returnUrlParamsBasedOnValue('utm_medium', utm_medium.value)}${returnUrlParamsBasedOnValue('utm_campaign', utm_campaign.value)}${returnUrlParamsBasedOnValue('ibi', ibi.value)}`;
 
         if(radioValue === 'customurl') {
             url = `${url}${returnUrlParamsBasedOnValue('ifl', ifl.value)}`
         } else {
             url = `${url}${returnUrlParamsBasedOnValue('isi', ibi.value)}`
+        }
+
+        if(andriodValue === 'customurl') {
+            url = `${url}${returnUrlParamsBasedOnValue('afl', afl.value)}`
         }
 
         //actuall api call to generate short link with long dynamic link
