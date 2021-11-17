@@ -59,7 +59,6 @@
     });
 
     button.addEventListener('click', async function buttonClick() {
-        debugger;
         //empty previous link if clicked again
         shortLink.classList.remove('red');
         shortLink.innerText = 'Loading . . .';
@@ -76,7 +75,7 @@
         if(radioValue === 'customurl') {
             url = `${url}${returnUrlParamsBasedOnValue('ifl', ifl.value)}`
         } else {
-            url = `${url}${returnUrlParamsBasedOnValue('isi', ibi.value)}`
+            url = `${url}${returnUrlParamsBasedOnValue('isi', '1037955384')}`
         }
 
         if(andriodValue === 'customurl') {
