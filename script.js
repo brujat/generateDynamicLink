@@ -15,7 +15,8 @@
     ifl = $('#ifl'),
     isi = $('#isi'),
     radioValue,
-    andriodValue;
+    andriodValue,
+    shortLinkTemplate = $('#dynamicshortlink');
 
     function returnUrlParamsBasedOnValue(param, value) {
         if(value) {
@@ -23,6 +24,20 @@
         }
         return ``;
     }
+
+    function bindCopyEvent() {
+        $('#copy').addEventListener('click', function copy() {
+            debugger;
+            let shortLinkText = $('.shortlinkcontent');
+
+            //select the text 
+            shortLinkText.select();
+            shortLinkText.setSelectionRange(0, 99999); //for mobile
+
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(shortLinkText.value);
+        })
+    };
 
     $('.container').addEventListener('click', function accordianHeaderClick(event) {
         if(event.target.classList.value === 'accordian-header') {
@@ -83,8 +98,12 @@
 
         var data = await postData.json();
         if(data.shortLink && data.previewLink) {
+            let template = shortLinkTemplate.content.cloneNode(true);
+            template.querySelector('.shortlinkcontent').value = data.shortLink;
             shortLink.classList.remove('red');
-            shortLink.innerText = `Short Link: ${data.shortLink} and Preview Link: ${data.previewLink}`;
+            shortLink.innerText = '';
+            shortLink.appendChild(template);
+            bindCopyEvent();
         } 
     })
 })();
