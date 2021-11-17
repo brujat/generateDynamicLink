@@ -27,7 +27,6 @@
 
     function bindCopyEvent() {
         $('#copy').addEventListener('click', function copy() {
-            debugger;
             let shortLinkText = $('.shortlinkcontent');
 
             //select the text 
