@@ -47,17 +47,19 @@
 
     $('#radios').addEventListener('click', function radioClick(event) {
         if(event.target && (event.target.matches('.radio-label') || event.target.matches(`input[type='radio']`))) {
-            radioValue = event.currentTarget.querySelector(`input[type='radio']`).value;
+            radioValue = event.currentTarget.querySelector(`input[type='radio']:checked`).value;
         }
     });
 
     $('#andriod-radios').addEventListener('click', function radioClick(event) {
         if(event.target && (event.target.matches('.radio-label') || event.target.matches(`input[type='radio']`))) {
-            andriodValue = event.currentTarget.querySelector(`input[type='radio']`).value;
+            andriodValue = event.currentTarget.querySelector(`input[type='radio']:checked`).value;
+            
         }
     });
 
     button.addEventListener('click', async function buttonClick() {
+        debugger;
         //empty previous link if clicked again
         shortLink.classList.remove('red');
         shortLink.innerText = 'Loading . . .';
