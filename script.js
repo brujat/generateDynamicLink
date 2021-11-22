@@ -92,6 +92,7 @@
     if (!deepLink.value) {
       shortLink.innerText = "Deep Link URL is mandatory";
       shortLink.classList.add("red");
+      return;
     }
 
     //manually generate dynamic long url
@@ -142,6 +143,7 @@
     );
 
     var data = await postData.json();
+    debugger;
     if (data.shortLink && data.previewLink) {
       let template = shortLinkTemplate.content.cloneNode(true);
       template.querySelector(".shortlinkcontent").value = data.shortLink;
@@ -149,6 +151,11 @@
       shortLink.innerText = "";
       shortLink.appendChild(template);
       bindCopyEvent();
+    }
+
+    if(data.error) {
+      shortLink.classList.add("red");
+      shortLink.innerText = data.error.message;
     }
   });
 })();
