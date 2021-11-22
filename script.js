@@ -16,7 +16,9 @@
     isi = $("#isi"),
     radioValue,
     andriodValue,
-    shortLinkTemplate = $("#dynamicshortlink");
+    shortLinkTemplate = $("#dynamicshortlink"),
+    modal = $('#modal'),
+    modalContent = $('.modal-content');
 
   function returnUrlParamsBasedOnValue(param, value) {
     if (value) {
@@ -67,7 +69,11 @@
     ) {
       radioValue = event.currentTarget.querySelector(
         `input[type='radio']:checked`
-      ).value;
+      )?.value;
+
+      if(radioValue === 'appstore') {
+        ifl.value = '';
+      }
     }
   });
 
@@ -79,19 +85,35 @@
     ) {
       andriodValue = event.currentTarget.querySelector(
         `input[type='radio']:checked`
-      ).value;
+      )?.value;
+
+      if(andriodValue === 'appstore') {
+        afl.value = '';
+      }
     }
   });
 
-  button.addEventListener("click", async function buttonClick() {
+
+  function bindModalClose() {
+    $('.closeModal').addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+  }
+
+  button.addEventListener("click", async function buttonClick(e) {
+    e.preventDefault();
     //empty previous link if clicked again
-    shortLink.classList.remove("red");
-    shortLink.innerText = "Loading . . .";
+    modal.style.display = "block";
+    modalContent.querySelector('div.content').classList.remove('red');
+    modalContent.querySelector('div.content').innerText = '';
+    modalContent.querySelector('div.content').innerText = 'Loading . . .';
+    bindModalClose();
 
     //alert if no values
     if (!deepLink.value) {
-      shortLink.innerText = "Deep Link URL is mandatory";
-      shortLink.classList.add("red");
+      modalContent.querySelector('div.content').innerText = '';
+      modalContent.querySelector('div.content').innerText = "Deep Link URL is mandatory";
+      modalContent.querySelector('div.content').classList.add("red");
       return;
     }
 
@@ -147,15 +169,16 @@
     if (data.shortLink && data.previewLink) {
       let template = shortLinkTemplate.content.cloneNode(true);
       template.querySelector(".shortlinkcontent").value = data.shortLink;
-      shortLink.classList.remove("red");
-      shortLink.innerText = "";
-      shortLink.appendChild(template);
+      modal.style.display = "block";
+      modalContent.querySelector('div.content').innerText = '';
+      modalContent.querySelector('div.content').classList.remove("red");
+      modalContent.querySelector('div.content').appendChild(template);
       bindCopyEvent();
     }
 
     if(data.error) {
-      shortLink.classList.add("red");
-      shortLink.innerText = data.error.message;
+      modalContent.querySelector('div.content').classList.add("red");
+      modalContent.querySelector('div.content').innerText = data.error.message;
     }
   });
 })();

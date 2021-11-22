@@ -42,7 +42,12 @@
               </h3>
               <label>
                 <h4>URL:</h4>
-                <input type="text" id="deepLink" />
+                <input
+                  type="text"
+                  id="deepLink"
+                  required
+                  placeholder="https://www.example.com"
+                />
               </label>
             </div>
           </div>
@@ -105,7 +110,11 @@
                 </h3>
                 <label>
                   <h4>IFL:</h4>
-                  <input type="text" id="ifl" />
+                  <input
+                    type="text"
+                    id="ifl"
+                    placeholder="https://www.example.com"
+                  />
                 </label>
               </div>
             </div>
@@ -143,7 +152,11 @@
                 <h4>If your app is not installed, send the user to</h4>
                 <div id="andriod-radios">
                   <label class="radio-label">
-                    <input type="radio" name="andriodlinkBehaviour" value="appstore" />
+                    <input
+                      type="radio"
+                      name="andriodlinkBehaviour"
+                      value="appstore"
+                    />
                     App store page for your app
                   </label>
                   <label class="radio-label">
@@ -166,7 +179,11 @@
                 </h3>
                 <label>
                   <h4>AFL:</h4>
-                  <input type="text" id="afl" />
+                  <input
+                    type="text"
+                    id="afl"
+                    placeholder="https://www.example.com"
+                  />
                 </label>
               </div>
             </div>
@@ -196,7 +213,11 @@
                 </h3>
                 <label>
                   <h4>OFL:</h4>
-                  <input type="text" id="ofl" />
+                  <input
+                    type="text"
+                    id="ofl"
+                    placeholder="https://www.example.com"
+                  />
                 </label>
               </div>
             </div>
@@ -279,11 +300,21 @@
     <template id="dynamicshortlink">
       <div class="generatedShortLink">
         <div class="shortlinkcontainer">
-          <label>Short Link: <input class="shortlinkcontent" type="text" disabled/></label>
+          <label
+            >Short Link: <input class="shortlinkcontent" type="text" disabled
+          /></label>
           <button id="copy">Copy</button>
         </div>
       </div>
     </template>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <div class="content"></div>
+        <span class="closeModal">&times;</span>
+      </div>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
