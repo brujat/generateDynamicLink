@@ -181,4 +181,12 @@
       modalContent.querySelector('div.content').innerText = data.error.message;
     }
   });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      if(modal) {
+        modal.style.display = 'none';
+      }
+    }
+  })
 })();
