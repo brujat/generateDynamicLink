@@ -17,8 +17,8 @@
     radioValue,
     andriodValue,
     shortLinkTemplate = $("#dynamicshortlink"),
-    modal = $('#modal'),
-    modalContent = $('.modal-content');
+    modal = $("#modal"),
+    modalContent = $(".modal-content");
 
   function returnUrlParamsBasedOnValue(param, value) {
     if (value) {
@@ -44,18 +44,21 @@
     "click",
     function accordianHeaderClick(event) {
       if (
-        event.target.classList.contains("accordian-header") ||  event.target.classList.contains("arrow-down")
+        event.target.classList.contains("accordian-header") ||
+        event.target.classList.contains("arrow-down")
       ) {
         if (event.target.classList.contains("arrow-down")) {
           event.target.parentElement.parentElement
             .querySelector(".accordian-content")
             .classList.toggle("animate");
-            event.target.parentElement.querySelector('svg').classList.toggle('rotate');
+          event.target.parentElement
+            .querySelector("svg")
+            .classList.toggle("rotate");
         } else {
           event.target.parentElement
             .querySelector(".accordian-content")
             .classList.toggle("animate");
-            event.target.querySelector('svg').classList.toggle('rotate');
+          event.target.querySelector("svg").classList.toggle("rotate");
         }
       }
     }
@@ -71,8 +74,8 @@
         `input[type='radio']:checked`
       )?.value;
 
-      if(radioValue === 'appstore') {
-        ifl.value = '';
+      if (radioValue === "appstore") {
+        ifl.value = "";
       }
     }
   });
@@ -87,16 +90,15 @@
         `input[type='radio']:checked`
       )?.value;
 
-      if(andriodValue === 'appstore') {
-        afl.value = '';
+      if (andriodValue === "appstore") {
+        afl.value = "";
       }
     }
   });
 
-
   function bindModalClose() {
-    $('.closeModal').addEventListener('click', function() {
-      modal.style.display = 'none';
+    $(".closeModal").addEventListener("click", function () {
+      modal.style.display = "none";
     });
   }
 
@@ -104,18 +106,21 @@
     e.preventDefault();
     //empty previous link if clicked again
     modal.style.display = "block";
-    modalContent.querySelector('div.content').classList.remove('red');
-    modalContent.querySelector('div.content').innerText = '';
-    modalContent.querySelector('div.content').innerText = 'Loading . . .';
+    modalContent.querySelector("div.content").classList.remove("red");
+    modalContent.querySelector("div.content").innerText = "";
+    modalContent.querySelector("div.content").innerText = "Loading . . .";
     bindModalClose();
 
     //alert if no values
     if (!deepLink.value) {
-      modalContent.querySelector('div.content').innerText = '';
-      modalContent.querySelector('div.content').innerText = "Deep Link URL is mandatory";
-      modalContent.querySelector('div.content').classList.add("red");
+      modalContent.querySelector("div.content").innerText = "";
+      modalContent.querySelector("div.content").innerText =
+        "Deep Link URL is mandatory";
+      modalContent.querySelector("div.content").classList.add("red");
       return;
     }
+
+    console.log(utm_source, utm_medium, utm_campaign);
 
     //manually generate dynamic long url
     var url = `https://saloncentric.page.link/?link=${
@@ -126,15 +131,6 @@
     )}${returnUrlParamsBasedOnValue(
       "ofl",
       ofl.value
-    )}${returnUrlParamsBasedOnValue(
-      "utm_source",
-      utm_source.value
-    )}${returnUrlParamsBasedOnValue(
-      "utm_medium",
-      utm_medium.value
-    )}${returnUrlParamsBasedOnValue(
-      "utm_campaign",
-      utm_campaign.value
     )}${returnUrlParamsBasedOnValue("ibi", ibi.value)}`;
 
     if (radioValue === "customurl") {
@@ -146,6 +142,14 @@
     if (andriodValue === "customurl") {
       url = `${url}${returnUrlParamsBasedOnValue("afl", afl.value)}`;
     }
+
+    url = `${url}${returnUrlParamsBasedOnValue(
+      "utm_source",
+      utm_source.value
+    )}${returnUrlParamsBasedOnValue(
+      "utm_medium",
+      utm_medium.value
+    )}${returnUrlParamsBasedOnValue("utm_campaign", utm_campaign.value)}&efr=1`;
 
     //actuall api call to generate short link with long dynamic link
     var postData = await fetch(
@@ -170,23 +174,23 @@
       let template = shortLinkTemplate.content.cloneNode(true);
       template.querySelector(".shortlinkcontent").value = data.shortLink;
       modal.style.display = "block";
-      modalContent.querySelector('div.content').innerText = '';
-      modalContent.querySelector('div.content').classList.remove("red");
-      modalContent.querySelector('div.content').appendChild(template);
+      modalContent.querySelector("div.content").innerText = "";
+      modalContent.querySelector("div.content").classList.remove("red");
+      modalContent.querySelector("div.content").appendChild(template);
       bindCopyEvent();
     }
 
-    if(data.error) {
-      modalContent.querySelector('div.content').classList.add("red");
-      modalContent.querySelector('div.content').innerText = data.error.message;
+    if (data.error) {
+      modalContent.querySelector("div.content").classList.add("red");
+      modalContent.querySelector("div.content").innerText = data.error.message;
     }
   });
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      if(modal) {
-        modal.style.display = 'none';
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      if (modal) {
+        modal.style.display = "none";
       }
     }
-  })
+  });
 })();
