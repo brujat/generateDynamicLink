@@ -149,7 +149,7 @@
     )}${returnUrlParamsBasedOnValue(
       "utm_medium",
       utm_medium.value
-    )}${returnUrlParamsBasedOnValue("utm_campaign", utm_campaign.value)}&efr=1`;
+    )}${returnUrlParamsBasedOnValue("utm_campaign", utm_campaign.value)}`;
 
     //actuall api call to generate short link with long dynamic link
     var postData = await fetch(
