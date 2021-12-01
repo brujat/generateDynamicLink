@@ -20,9 +20,9 @@
     modal = $("#modal"),
     modalContent = $(".modal-content");
 
-  function returnUrlParamsBasedOnValue(param, value) {
+  function returnUrlParamsBasedOnValue(param, value, ampFlag) {
     if (value) {
-      return `&${param}=${value}`;
+      return `${ampFlag? '&': ''}${param}=${value}`;
     }
     return ``;
   }
@@ -102,6 +102,29 @@
     });
   }
 
+  function updateURLValues(value) {
+    if (value.indexOf("?") !== -1) {
+      value = `${value}&${returnUrlParamsBasedOnValue(
+        "utm_source",
+        utm_source.value
+      )}${returnUrlParamsBasedOnValue(
+        "utm_medium",
+        utm_medium.value,
+        true
+      )}${returnUrlParamsBasedOnValue("utm_campaign", utm_campaign.value, true)}`;
+    } else {
+      value = `${value}?${returnUrlParamsBasedOnValue(
+        "utm_source",
+        utm_source.value, false
+      )}${returnUrlParamsBasedOnValue(
+        "utm_medium",
+        utm_medium.value, true
+      )}${returnUrlParamsBasedOnValue("utm_campaign", utm_campaign.value, true)}`;
+    }
+
+    return value;
+  }
+
   button.addEventListener("click", async function buttonClick(e) {
     e.preventDefault();
     //empty previous link if clicked again
@@ -120,36 +143,37 @@
       return;
     }
 
-    console.log(utm_source, utm_medium, utm_campaign);
-
     //manually generate dynamic long url
     var url = `https://saloncentric.page.link/?link=${
       deepLink.value
     }${returnUrlParamsBasedOnValue(
       "apn",
-      packageName.value
+      packageName.value, true
     )}${returnUrlParamsBasedOnValue(
       "ofl",
-      ofl.value
-    )}${returnUrlParamsBasedOnValue("ibi", ibi.value)}`;
+      updateURLValues(ofl.value), true
+    )}${returnUrlParamsBasedOnValue("ibi", ibi.value, true)}`;
 
     if (radioValue === "customurl") {
-      url = `${url}${returnUrlParamsBasedOnValue("ifl", ifl.value)}`;
+      if (ifl.value.split("?").length)
+        url = `${url}${returnUrlParamsBasedOnValue("ifl", updateURLValues(ifl.value), true)}`;
     } else {
-      url = `${url}${returnUrlParamsBasedOnValue("isi", "1037955384")}`;
+      url = `${url}${returnUrlParamsBasedOnValue("isi", "1037955384", true)}`;
     }
 
     if (andriodValue === "customurl") {
-      url = `${url}${returnUrlParamsBasedOnValue("afl", afl.value)}`;
+      url = `${url}${returnUrlParamsBasedOnValue("afl", updateURLValues(afl.value), true)}`;
     }
 
     url = `${url}${returnUrlParamsBasedOnValue(
       "utm_source",
-      utm_source.value
+      utm_source.value,
+      true
     )}${returnUrlParamsBasedOnValue(
       "utm_medium",
-      utm_medium.value
-    )}${returnUrlParamsBasedOnValue("utm_campaign", utm_campaign.value)}`;
+      utm_medium.value,
+      true
+    )}${returnUrlParamsBasedOnValue("utm_campaign", utm_campaign.value, true)}`;
 
     //actuall api call to generate short link with long dynamic link
     var postData = await fetch(
@@ -169,7 +193,6 @@
     );
 
     var data = await postData.json();
-    debugger;
     if (data.shortLink && data.previewLink) {
       let template = shortLinkTemplate.content.cloneNode(true);
       template.querySelector(".shortlinkcontent").value = data.shortLink;
