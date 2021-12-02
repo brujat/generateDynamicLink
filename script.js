@@ -151,18 +151,18 @@
       packageName.value, true
     )}${returnUrlParamsBasedOnValue(
       "ofl",
-      updateURLValues(ofl.value), true
+      encodeURIComponent(updateURLValues(ofl.value)), true
     )}${returnUrlParamsBasedOnValue("ibi", ibi.value, true)}`;
 
     if (radioValue === "customurl") {
       if (ifl.value.split("?").length)
-        url = `${url}${returnUrlParamsBasedOnValue("ifl", updateURLValues(ifl.value), true)}`;
+        url = `${url}${returnUrlParamsBasedOnValue("ifl", encodeURIComponent(updateURLValues(ifl.value)), true)}`;
     } else {
       url = `${url}${returnUrlParamsBasedOnValue("isi", "1037955384", true)}`;
     }
 
     if (andriodValue === "customurl") {
-      url = `${url}${returnUrlParamsBasedOnValue("afl", updateURLValues(afl.value), true)}`;
+      url = `${url}${returnUrlParamsBasedOnValue("afl", encodeURIComponent(updateURLValues(afl.value)), true)}`;
     }
 
     url = `${url}${returnUrlParamsBasedOnValue(
@@ -173,7 +173,7 @@
       "utm_medium",
       utm_medium.value,
       true
-    )}${returnUrlParamsBasedOnValue("utm_campaign", utm_campaign.value, true)}`;
+    )}${returnUrlParamsBasedOnValue("utm_campaign", utm_campaign.value, true)}&efr=1`;
 
     //actuall api call to generate short link with long dynamic link
     var postData = await fetch(
